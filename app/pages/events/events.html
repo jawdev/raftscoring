@@ -1,0 +1,51 @@
+<ion-header>
+	<ion-navbar dark>
+		<button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Events</ion-title>
+		<ion-buttons end>
+			<button (click)="add()">
+				<ion-icon name="add"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+<ion-content *ngIf="events.length == 0" padding>
+	<button (click)="add()">
+		<ion-icon item-left name="add"></ion-icon>
+		Create First Event
+	</button>
+</ion-content>
+<ion-content *ngIf="events.length > 0" class='events' padding>
+
+
+<ion-card *ngFor="let e of events">
+	<ion-card-header>
+		{{e.venue}}
+	</ion-card-header>
+	<ion-grid><ion-row>
+		<ion-col>
+			<ion-icon name='flag' item-left></ion-icon>
+			R6
+		</ion-col>
+		<ion-col>
+			<ion-icon name='people' item-left></ion-icon>
+			{{e.teams.length}} team{{e.teams.length == 1 ? '' : 's'}}
+		</ion-col>
+		<ion-col>
+			<ion-icon name='calendar' item-left></ion-icon>
+			{{e.date}}
+		</ion-col>
+		<ion-col>
+			<ion-buttons>
+				<button (click)="edit( e )" clear>
+					<ion-icon name="create"></ion-icon>
+				</button>
+			</ion-buttons>
+		</ion-col>
+	</ion-row></ion-grid>
+</ion-card>
+
+
+</ion-content>

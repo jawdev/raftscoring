@@ -1,0 +1,35 @@
+<ion-header>
+	<ion-navbar dark>
+		<ion-title>{{is_add ? "Add" : "Edit"}} Team</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content>
+
+
+<form [ngFormModel]="form" (ngSubmit)="onSubmit( form.value )">
+	<ion-item>
+		<ion-label>Team Name</ion-label>
+		<ion-input type="text" [ngFormControl]="inp( 'name' )" [(ngModel)]="val_name"></ion-input>
+	</ion-item>
+	<ion-item>
+		<ion-label>Division</ion-label>
+		<ion-select [ngFormControl]="inp( 'division' )" [(ngModel)]="val_division">
+			<ion-option *ngFor="let d of divisions" value="{{d.id}}">
+				{{d.name}}
+			</ion-option>
+		</ion-select>
+	</ion-item>
+	<ion-item>
+		<ion-label>Hometown</ion-label>
+		<ion-input type="text" [ngFormControl]="inp( 'hometown' )" [(ngModel)]="val_hometown"></ion-input>
+	</ion-item>
+	<div padding>
+		<button block [disabled]="!form.valid">
+			<ion-icon [name]="is_add ? 'add' : 'checkmark'" item-left></ion-icon>
+			{{is_add ? "Add" : "Save"}} Team
+		</button>
+	</div>
+</form>
+
+
+</ion-content>

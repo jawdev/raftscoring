@@ -1,0 +1,47 @@
+<ion-header>
+	<ion-navbar dark>
+		<ion-title>{{is_add ? "Add" : "Edit"}} Event</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content>
+
+
+<form [ngFormModel]="form" (ngSubmit)="onSubmit( form.value )">
+	<ion-item>
+		<ion-label>Venue</ion-label>
+		<ion-input type="text" [ngFormControl]="inp( 'venue' )" [(ngModel)]="val_venue"></ion-input>
+	</ion-item>
+	<ion-item>
+		<ion-label>Type</ion-label>
+		<ion-select [ngFormControl]="inp( 'type' )" [(ngModel)]="val_type">
+			<ion-option *ngFor="let t of types" value="{{t.id}}">
+				{{t.name}}
+			</ion-option>
+		</ion-select>
+	</ion-item>
+	<ion-item>
+		<ion-label>Date From</ion-label>
+		<ion-datetime displayFormat="D MMM YYYY" pickerFormat="D MMM YYYY" [max]="year_max" [ngFormControl]="inp( 'date_from' )" [(ngModel)]="val_date_from"></ion-datetime>
+	</ion-item>
+	<ion-item>
+		<ion-label>Date To</ion-label>
+		<ion-datetime displayFormat="D MMM YYYY" pickerFormat="D MMM YYYY" [min]="val_date_from" [max]="year_max" [ngFormControl]="inp( 'date_to' )" [(ngModel)]="val_date_to"></ion-datetime>
+	</ion-item>
+	<ion-item>
+		<ion-label>Participating Teams</ion-label>
+		<ion-select [ngFormControl]="inp( 'teams' )" [(ngModel)]="val_teams" multiple>
+			<ion-option *ngFor="let t of teams" value="{{t.id}}" [checked]="val_teams.indexOf( t.id ) != -1">
+				{{t.name}}
+			</ion-option>
+		</ion-select>
+	</ion-item>
+	<div padding>
+		<button block [disabled]="!form.valid">
+			<ion-icon [name]="is_add ? 'add' : 'checkmark'" item-left></ion-icon>
+			{{is_add ? "Add" : "Save"}} Event
+		</button>
+	</div>
+</form>
+
+
+</ion-content>

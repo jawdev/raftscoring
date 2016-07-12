@@ -1,0 +1,16 @@
+<!-- SIDE MENU -->
+<ion-menu [content]="content">
+	<ion-toolbar primary>
+		<ion-title>Raft Scoring <p>[alpha v0.0.1]</p></ion-title>
+	</ion-toolbar>
+	<ion-content>
+		<ion-list>
+			<button ion-item *ngFor="let p of pages" (click)="openPage( p )">
+				<ion-icon item-left name="{{p.icon}}"></ion-icon>
+				{{p.title}}
+			</button>
+		</ion-list>
+	</ion-content>
+</ion-menu>
+
+<ion-nav [root]="root_page" #content swipe-back-enabled="false"></ion-nav>
